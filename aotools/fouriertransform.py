@@ -15,11 +15,12 @@ def ft(data, delta):
     Returns:
         ndarray: scaled FFT
     """
-    DATA = numpy.fft.fftshift(
-            numpy.fft.fft(
-                    numpy.fft.fftshift(data, axes=(-1))),
-            axes=(-1)) * delta
-    return DATA
+    return (
+        numpy.fft.fftshift(
+            numpy.fft.fft(numpy.fft.fftshift(data, axes=(-1))), axes=(-1)
+        )
+        * delta
+    )
 
 def ift(DATA, delta_f):
     """
@@ -33,12 +34,13 @@ def ift(DATA, delta_f):
         ndarray: Scaled data in real space
     """
 
-    data = numpy.fft.ifftshift(
-            numpy.fft.ifft(
-                    numpy.fft.ifftshift(DATA, axes=(-1))),
-            axes=(-1)) * len(DATA) * delta_f
-
-    return data
+    return (
+        numpy.fft.ifftshift(
+            numpy.fft.ifft(numpy.fft.ifftshift(DATA, axes=(-1))), axes=(-1)
+        )
+        * len(DATA)
+        * delta_f
+    )
 
 
 def ft2(data, delta):
@@ -53,13 +55,13 @@ def ft2(data, delta):
         ndarray: scaled FFT
     """
 
-    DATA = numpy.fft.fftshift(
-            numpy.fft.fft2(
-                    numpy.fft.fftshift(data, axes=(-1,-2))
-                    ), axes=(-1,-2)
-            )*delta**2
-
-    return DATA
+    return (
+        numpy.fft.fftshift(
+            numpy.fft.fft2(numpy.fft.fftshift(data, axes=(-1, -2))),
+            axes=(-1, -2),
+        )
+        * delta**2
+    )
 
 def ift2(DATA, delta_f):
     """
@@ -73,11 +75,10 @@ def ift2(DATA, delta_f):
         ndarray: Scaled data in real space
     """
     N = DATA.shape[0]
-    g = numpy.fft.ifftshift(
-            numpy.fft.ifft2(
-                    numpy.fft.ifftshift(DATA))) * (N * delta_f)**2
-
-    return g
+    return (
+        numpy.fft.ifftshift(numpy.fft.ifft2(numpy.fft.ifftshift(DATA)))
+        * (N * delta_f) ** 2
+    )
 
 def rft(data, delta):
     """
@@ -90,11 +91,12 @@ def rft(data, delta):
     Returns:
         ndarray: scaled FFT
     """
-    DATA = numpy.fft.fftshift(
-            numpy.fft.rfft(
-                    numpy.fft.fftshift(data, axes=(-1))),
-            axes=(-1)) * delta
-    return DATA
+    return (
+        numpy.fft.fftshift(
+            numpy.fft.rfft(numpy.fft.fftshift(data, axes=(-1))), axes=(-1)
+        )
+        * delta
+    )
 
 def irft(DATA, delta_f):
     """
@@ -108,12 +110,13 @@ def irft(DATA, delta_f):
         ndarray: Scaled data in real space
     """
 
-    data = numpy.fft.ifftshift(
-            numpy.fft.irfft(
-                    numpy.fft.ifftshift(DATA, axes=(-1))),
-            axes=(-1)) * len(DATA) * delta_f
-
-    return data
+    return (
+        numpy.fft.ifftshift(
+            numpy.fft.irfft(numpy.fft.ifftshift(DATA, axes=(-1))), axes=(-1)
+        )
+        * len(DATA)
+        * delta_f
+    )
 
 def rft2(data, delta):
     """
@@ -126,13 +129,13 @@ def rft2(data, delta):
     Returns:
         ndarray: scaled FFT
     """
-    DATA = numpy.fft.fftshift(
-            numpy.fft.rfft2(
-                    numpy.fft.fftshift(data, axes=(-1,-2))
-                    ), axes=(-1,-2)
-            )*delta**2
-
-    return DATA
+    return (
+        numpy.fft.fftshift(
+            numpy.fft.rfft2(numpy.fft.fftshift(data, axes=(-1, -2))),
+            axes=(-1, -2),
+        )
+        * delta**2
+    )
 
 def irft2(DATA, delta_f):
     """
@@ -145,9 +148,9 @@ def irft2(DATA, delta_f):
     Returns:
         ndarray: Scaled data in real space
     """
-    data = numpy.fft.ifftshift(
-            numpy.fft.irfft2(
-                    numpy.fft.ifft2(DATA), s=(-1,-2)
-                    )
-            ) * (DATA.shape[0]*delta_f)**2
-    return data
+    return (
+        numpy.fft.ifftshift(
+            numpy.fft.irfft2(numpy.fft.ifft2(DATA), s=(-1, -2))
+        )
+        * (DATA.shape[0] * delta_f) ** 2
+    )

@@ -231,8 +231,8 @@ if __name__ == "__main__":
 
     time_taken = (t2 - t1) / N
     covmat_per_sec = 1. / time_taken
-    print("Time for 1 Covariance Matrix: {}s".format(time_taken))
-    print("Covariance Matrics per second: {} cps".format(covmat_per_sec))
+    print(f"Time for 1 Covariance Matrix: {time_taken}s")
+    print(f"Covariance Matrics per second: {covmat_per_sec} cps")
 
     # from matplotlib import pyplot
     # pyplot.imshow(cov_mat.covariance_matrix)
@@ -245,11 +245,11 @@ def test_structure_function_kolmogorov():
     sf = aotools.structure_function_kolmogorov(seps, r0)
 
     assert len(sf) == len(seps)
-    assert all(numpy.isnan(sf)) is False
+    assert not all(numpy.isnan(sf))
 
 
 def test_calculate_structure_function():
     phase = numpy.random.randn(32, 32)
     sf = aotools.calculate_structure_function(phase)
-    assert all(numpy.isnan(sf)) is False
+    assert not all(numpy.isnan(sf))
     assert len(sf) == int(phase.shape[1] / 4)

@@ -92,7 +92,7 @@ class PhaseScreen(object):
                 break
             max_n += 1
 
-        for n in range(0, max_n + 1):
+        for n in range(max_n + 1):
             col = int((2 ** (n - 1)) + 1)
             n_points = (2 ** (max_n - n)) + 1
 

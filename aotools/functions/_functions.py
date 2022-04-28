@@ -25,7 +25,7 @@ def gaussian2d(size, width, amplitude=1., cent=None):
         xWidth = float(width[1])
     except (TypeError, IndexError):
         xWidth = yWidth = float(width)
-    
+
     # If a centre point not given, centre is centre of array
     if cent is None:
         xCent = xSize/2.
@@ -34,9 +34,8 @@ def gaussian2d(size, width, amplitude=1., cent=None):
         yCent = cent[0]
         xCent = cent[1]
 
-    X, Y = numpy.meshgrid(range(0, xSize), range(0, ySize))
+    X, Y = numpy.meshgrid(range(xSize), range(ySize))
 
-    image = amplitude * numpy.exp(
-        -(((xCent - X) / xWidth) ** 2 + ((yCent - Y) / yWidth) ** 2) / 2)
-
-    return image
+    return amplitude * numpy.exp(
+        -(((xCent - X) / xWidth) ** 2 + ((yCent - Y) / yWidth) ** 2) / 2
+    )
